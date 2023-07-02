@@ -1,5 +1,9 @@
 <script>
 
+import axios from 'axios';
+import dayjs from 'dayjs';
+
+
 export default {
     data() {
         return {
@@ -15,14 +19,33 @@ export default {
             rightLetters: 0,
             littletime: false,
             
-            colors: ['red', '#FF3300', '#ff6600', '#ff9900', '#FFCC00', '#FFFF00', '#ccff00', '#99ff00', '#66ff00', '#66ff66']
+            colors: ['red', '#FF3300', '#ff6600', '#ff9900', '#FFCC00', '#FFFF00', '#ccff00', '#99ff00', '#66ff00', '#66ff66'],
+
+            theWorsAll2: []
         }
+    },
+    mounted(){
+        this.grabWords();
     },
 
     methods: {
+        async grabWords(){
+            let response = await axios.get('/words/all');
+            this.theWordsAll2 = response.data;
 
+            // console.log(this.theWordsAll2[this.getRandomNumber(0, this.theWordsAll2.length)])
 
-        
+            let BDWord = this.theWordsAll2[this.getRandomNumber(0, this.theWordsAll2.length)]
+            this.theWord = BDWord.theWord;
+            this.theWordAll = BDWord.theWordAll;
+
+            console.log(this.theWord, this.theWordAll)
+        },
+
+        getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min) + min)
+        },
+
         ClickLetter(evt){
           if (evt.use == false){
             if(this.times == 3){
@@ -80,9 +103,9 @@ export default {
                 <div class="times" :style="'background-color:'+ colors[this.times-1]+ '; max-width: 300px;'" :class="{'littletime': this.littletime}">{{this.times}}</div>
             </div>
             <div class="col">
-                <div class="row times" style="justify-content: center; gap: 2%; width: 280px; margin: 0 10% 10% 0;">
+                <div class="row times" style="justify-content: center; gap: 2%; width: 100%; margin: 0 10% 10% 0;">
                     <div v-for="(item, index) in theWord" class="col one"
-                    style=" max-width: 45px;"
+                    style=" max-width: 40px;"
                     >{{item.guessed === true ? item.value : ''}}{{item.guessed === false ? "_" : ''}}</div>
                 </div>
                 <div class="row" style="gap: 10px; width:300px; justify-content: center;">
