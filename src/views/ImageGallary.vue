@@ -10,8 +10,8 @@ export default {
                        {value: "Ц", use: false, right: false}, {value: "Ч", use: false, right: false}, {value: "Ш", use: false, right: false}, {value: "Щ", use: false, right: false}, {value: "Ь", use: false, right: false}, {value: "Ъ", use: false, right: false},
                        {value: "Ы", use: false, right: false}, {value: "Э", use: false, right: false}, {value: "Ю", use: false, right: false}, {value: "Я", use: false, right: false}], 
             times: 10,
-            theWord: [{value: "Ш", guessed: false}, {value: "У", guessed: false}, {value: "М", guessed: false}],
-            theWordAll: "ШУМ",
+            theWord: [{value: "К", guessed: false}, {value: "О", guessed: false}, {value: "Ш", guessed: false}, {value: "К", guessed: false}, {value: "А", guessed: false}],
+            theWordAll: "КОШКА",
             rightLetters: 0,
             littletime: false,
             
@@ -20,6 +20,9 @@ export default {
     },
 
     methods: {
+
+
+        
         ClickLetter(evt){
           if (evt.use == false){
             if(this.times == 3){

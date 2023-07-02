@@ -31,4 +31,9 @@ let wordsSchema = new mongoose.Schema({
     }]
 })
 
-let words = mongoose.model('words', wordsSchema);
+let Word = mongoose.model('words', wordsSchema);
+
+app.get('/words/all', async function (req, res) {
+    let response = await Word.find()
+    res.send(response)
+})
