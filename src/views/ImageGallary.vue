@@ -30,14 +30,21 @@ export default {
             }
 
             if (this.times>0){
-                
                 if (this.theWordAll.includes(evt.value)){
-                    this.rightLetters+=1
+                    
                     evt.right = true;
                     evt.use = true;
                     
-                    this.theWord[this.theWordAll.indexOf(evt.value)].guessed = true;
-                    console.log(this.theWord[this.theWordAll.indexOf(evt.value)].guessed);
+                    for (let i of this.theWord){
+                        if (i.value==evt.value){
+                            i.guessed = true;
+                            console.log(i.guessed);
+                            this.rightLetters+=1
+                        }
+                    }
+                    console.log(this.rightLetters, this.theWordAll.length)
+                    // this.theWord[this.theWordAll.indexOf(evt.value)].guessed = true;
+                    // console.log(this.theWord[this.theWordAll.indexOf(evt.value)].guessed);
 
                     if(this.rightLetters==this.theWordAll.length){
                         alert('Вы выиграли) '+
@@ -59,7 +66,6 @@ export default {
                     console.log('после', this.times);
                 }
             }
-
           }
           console.log(evt);
         }
