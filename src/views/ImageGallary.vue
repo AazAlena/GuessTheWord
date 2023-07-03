@@ -99,10 +99,69 @@ export default {
 <template>
     <div class="container" style="margin: 50px;">
         <div class="row">
-            <div class="col" style="margin-right: 20px;"><!--  -->
-                <div class="times" :style="'background-color:'+ colors[this.times-1]+ '; max-width: 300px;'" :class="{'littletime': this.littletime}">{{this.times}}</div>
+            <div class="col" style="margin-right: 20px; flex-basis:30%"><!--  -->
+                <div class="times row" :style="'background-color:'+ colors[this.times-1]+ '; max-width: 300px;'" :class="{'littletime': this.littletime}">{{this.times}}</div>
+
+                <div class="row" style="height: 400px; position:relative">
+
+                    <div style="border-top: solid 5px #000000; 
+                    position: absolute; bottom: 312px; left: 75px;
+                    width: 100px; padding:0px;" ></div>
+
+                    <div style="border-right: solid 5px #000000; 
+                    position: absolute; bottom: 256px; left: 175px;
+                    height: 60px; width: 0px; padding:0px;" ></div>
+ 
+                    <div style="border: solid 5px #000000; 
+                    position: absolute; bottom: 221px; left: 160px;
+                    height: 35px; width: 35px; padding:0px;
+                    border-radius:50%"></div>
+
+                    <div style="border-right: solid 5px #000000; 
+                    position: absolute; bottom: 151px; left: 175px;
+                    height: 70px; width: 0px; padding:0px;" ></div>
+
+                    <div style="border-left: solid 5px #000000; 
+                    position: absolute; bottom: 12px; left: 75px;
+                    height: 300px; width: 0px; padding:0px;" ></div>
+
+                    <div style="border-bottom: solid 5px #000000; 
+                    position: absolute; bottom: 10px; left: 20px;
+                    width: 120px;"></div>
+
+
+                    <div style="border-right: solid 5px #000000; 
+                    position: absolute; bottom: 104px; left: 168px;
+                    height: 50px; width: 0px; padding:0px;
+                    
+                    transform:rotate(20deg);
+                    " ></div>
+
+                    <div style="border-right: solid 5px #000000; 
+                    position: absolute; bottom: 104px; left: 184px;
+                    height: 50px; width: 0px; padding:0px;
+                    
+                    transform:rotate(160deg);
+                    " ></div>
+
+
+                    <div style="border-right: solid 5px #000000; 
+                    position: absolute; bottom: 154px; left: 184px;
+                    height: 50px; width: 0px; padding:0px;
+                    
+                    transform:rotate(160deg);
+                    " ></div>
+
+                    <div style="border-right: solid 5px #000000; 
+                    position: absolute; bottom: 154px; left: 168px;
+                    height: 50px; width: 0px; padding:0px;
+                    
+                    transform:rotate(20deg);
+                    " ></div>
+
+                </div>
             </div>
-            <div class="col">
+            <div class="col" style="flex-basis:50%">
                 <div class="row times" style="justify-content: center; gap: 2%; width: 100%; margin: 0 10% 10% 0;">
                     <div v-for="(item, index) in theWord" class="col one"
                     style=" max-width: 40px;"
@@ -110,7 +169,7 @@ export default {
                 </div>
                 <div class="row" style="gap: 10px; width:300px; justify-content: center;">
                     <div v-for="(item, index) in alphabet" class="col alphabet" :class="{'right': item.use && item.right, 'false': item.use && !item.right}" @click="ClickLetter(item)" 
-                    style="max-width: 45px;"
+                    style="max-width: 45px; "
                     >{{item.value}}</div>
                 </div>
             </div>
