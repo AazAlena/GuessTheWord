@@ -19,7 +19,7 @@ export default {
             rightLetters: 0,
             littletime: false,
             
-            colors: ['red', '#FF3300', '#ff6600', '#ff9900', '#FFCC00', '#FFFF00', '#ccff00', '#99ff00', '#66ff00', '#66ff66'],
+            colors: [ 'rgb(0,47,74)', 'rgb(0,47,74)', 'rgb(0,100,129)', 'rgb(0,100,129)', 'rgb(0,141,165)', 'rgb(0,141,165)', 'rgb(104,192,207)', 'rgb(104,192,207)', 'rgb(231,237,231)', 'rgb(231,237,231)'],
 
             theWorsAll2: []
         }
@@ -70,23 +70,37 @@ export default {
                     // console.log(this.theWord[this.theWordAll.indexOf(evt.value)].guessed);
 
                     if(this.rightLetters==this.theWordAll.length){
-                        alert('Вы выиграли) '+
+                        setTimeout(() => {
+                            alert('Вы выиграли) '+
                         'Ответ: '+this.theWordAll);
-                        
                         location.reload()
+                        }, 500)
+                        
                     }
                 } else {
                     console.log('до', this.times);
                     evt.use = true;
                     this.times-=1;
-
-                    if(this.times<1){
-                        alert('Вы проиграли( '+
-                        'Ответ: '+this.theWordAll);
+                    
+                //     if(this.times<1){
+                //         alert('Вы проиграли( '+
+                //         'Ответ: '+this.theWordAll);
                         
+                //         location.reload()
+                //     }
+                //     console.log('после', this.times);
+                // 
+                    if(this.times<1){
+                        setTimeout(() => {
+                            alert('Вы проиграли( '+
+                        'Ответ: '+this.theWordAll)
                         location.reload()
+                        }, 500)
+                        
                     }
                     console.log('после', this.times);
+                
+                    
                 }
             }
           }
@@ -97,37 +111,45 @@ export default {
 </script>
 
 <template>
-    <div class="container" style="margin: 50px;">
+    <div class="container" style="margin-top: 50px;">
         <div class="row">
             <div class="col" style="margin-right: 20px; flex-basis:30%"><!--  -->
                 <div class="times row" :style="'background-color:'+ colors[this.times-1]+ '; max-width: 300px;'" :class="{'littletime': this.littletime}">{{this.times}}</div>
 
                 <div class="row" style="height: 400px; position:relative">
-
+                    <!-- самая высокая балка -->
                     <div style="border-top: solid 5px #000000; 
                     position: absolute; bottom: 312px; left: 75px;
-                    width: 100px; padding:0px;" ></div>
+                    width: 100px; padding:0px;" 
+                    :class="{'disaster': !(this.times<8)}"></div>
 
                     <div style="border-right: solid 5px #000000; 
                     position: absolute; bottom: 256px; left: 175px;
-                    height: 60px; width: 0px; padding:0px;" ></div>
+                    height: 60px; width: 0px; padding:0px;" 
+                    :class="{'disaster': !(this.times<7)}"></div>
  
                     <div style="border: solid 5px #000000; 
                     position: absolute; bottom: 221px; left: 160px;
                     height: 35px; width: 35px; padding:0px;
-                    border-radius:50%"></div>
+                    border-radius:50%"
+                    :class="{'disaster': !(this.times<6)}"></div>
 
                     <div style="border-right: solid 5px #000000; 
                     position: absolute; bottom: 151px; left: 175px;
-                    height: 70px; width: 0px; padding:0px;" ></div>
-
+                    height: 70px; width: 0px; padding:0px;" 
+                    :class="{'disaster': !(this.times<5)}"></div>
+                    <!-- самая длинная балка -->
                     <div style="border-left: solid 5px #000000; 
                     position: absolute; bottom: 12px; left: 75px;
-                    height: 300px; width: 0px; padding:0px;" ></div>
-
+                    height: 300px; width: 0px; padding:0px;" 
+                    
+                    :class="{'disaster': !(this.times<9)}"></div>
+                    <!-- самая низкая балка -->
                     <div style="border-bottom: solid 5px #000000; 
                     position: absolute; bottom: 10px; left: 20px;
-                    width: 120px;"></div>
+                    width: 120px;"
+
+                    :class="{'disaster': !(this.times<10)}"></div>
 
 
                     <div style="border-right: solid 5px #000000; 
@@ -135,14 +157,16 @@ export default {
                     height: 50px; width: 0px; padding:0px;
                     
                     transform:rotate(20deg);
-                    " ></div>
+                    " 
+                    :class="{'disaster': !(this.times<4)}"></div>
 
                     <div style="border-right: solid 5px #000000; 
                     position: absolute; bottom: 104px; left: 184px;
                     height: 50px; width: 0px; padding:0px;
                     
                     transform:rotate(160deg);
-                    " ></div>
+                    " 
+                    :class="{'disaster': !(this.times<3)}"></div>
 
 
                     <div style="border-right: solid 5px #000000; 
@@ -150,27 +174,32 @@ export default {
                     height: 50px; width: 0px; padding:0px;
                     
                     transform:rotate(160deg);
-                    " ></div>
+                    " 
+                    :class="{'disaster': !(this.times<2)}"></div>
 
                     <div style="border-right: solid 5px #000000; 
                     position: absolute; bottom: 154px; left: 168px;
                     height: 50px; width: 0px; padding:0px;
                     
-                    transform:rotate(20deg);
-                    " ></div>
+                    transform:rotate(20deg);" 
+                    :class="{'disaster': !(this.times<1)}"></div>
 
                 </div>
             </div>
             <div class="col" style="flex-basis:50%">
-                <div class="row times" style="justify-content: center; gap: 2%; width: 100%; margin: 0 10% 10% 0;">
+                <div class="row" style="justify-content: center; margin-bottom:10%;">
+                <div class="row times forword" >
                     <div v-for="(item, index) in theWord" class="col one"
                     style=" max-width: 40px;"
                     >{{item.guessed === true ? item.value : ''}}{{item.guessed === false ? "_" : ''}}</div>
                 </div>
-                <div class="row" style="gap: 10px; width:300px; justify-content: center;">
-                    <div v-for="(item, index) in alphabet" class="col alphabet" :class="{'right': item.use && item.right, 'false': item.use && !item.right}" @click="ClickLetter(item)" 
-                    style="max-width: 45px; "
-                    >{{item.value}}</div>
+                </div>
+                <div class="row" style="justify-content: center;">
+                    <div class="row" style="gap: 10px; width:300px; justify-content: center;">
+                        <div v-for="(item, index) in alphabet" class="col alphabet" :class="{'right': item.use && item.right, 'false': item.use && !item.right}" @click="ClickLetter(item)" 
+                        style="max-width: 45px; "
+                        >{{item.value}}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,6 +207,12 @@ export default {
 </template>
 
 <style>
+
+.forword{
+    justify-content: center; 
+    gap: 2%;
+    width: 60%;
+}
 
 .littletime{
     background-color: rgb(255, 81, 81);
@@ -212,6 +247,10 @@ export default {
     border-color: red;
     color: red;
     background-color: white;
+}
+
+.disaster{
+    display: none
 }
 
 </style>
